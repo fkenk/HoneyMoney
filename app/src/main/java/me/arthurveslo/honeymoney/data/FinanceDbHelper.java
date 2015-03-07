@@ -10,9 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FinanceDbHelper extends SQLiteOpenHelper {
     public final static int DATABASE_VERSION = 1;
     public final static String DATABASE_NAME = "finance.db";
-
-    public FinanceDbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public static final String LOG_TAG = FinanceDbHelper.class.getSimpleName();
+    public FinanceDbHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class FinanceDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_CATEGORY_INCOME_TABLE);
         db.execSQL(SQL_CREATE_COSTS_TABLE);
         db.execSQL(SQL_CREATE_INCOME_TABLE);
+        //Log.v(LOG_TAG,"On Create method");
     }
 
     @Override
