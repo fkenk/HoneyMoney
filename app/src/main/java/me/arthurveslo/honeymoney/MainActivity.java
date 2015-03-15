@@ -1,12 +1,10 @@
 package me.arthurveslo.honeymoney;
 
-import android.content.ContentValues;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import me.arthurveslo.honeymoney.data.FinanceContract;
 import me.arthurveslo.honeymoney.data.FinanceDbHelper;
 
 
@@ -84,15 +81,18 @@ public class MainActivity extends ActionBarActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.add :
-                    Log.v(LOG_TAG,"Insert");
+                    /*Log.v(LOG_TAG,"Insert");
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(FinanceContract.CategoryIncomeEntry._ID,"1");
                     contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME,"Зарплата");
 
-                    MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);
+                    MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);*/
+                    Intent intent = new Intent(getActivity(),AddFinance.class);
+                    startActivity(intent);
                     break;
+
                 case R.id.takeOff :
-                    Log.v(LOG_TAG,"Rows in my table");
+                    /*Log.v(LOG_TAG,"Rows in my table");
                     Cursor c = MainActivity.getDb().query(FinanceContract.CategoryIncomeEntry.TABLE_NAME,null,null,null,null,null,null);
                     if (c.moveToFirst()) {
 
@@ -111,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
                         } while (c.moveToNext());
                     } else
                         Log.v(LOG_TAG, "0 rows");
-                    c.close();
+                    c.close();*/
                     break;
             }
 
