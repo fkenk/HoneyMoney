@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Honey Money</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_finance">AddFinance</string>
 
-    <!--Navigation Drawer-->
+    <!-- Navigation Drawer -->
     <string name="drawer_item_home">Home</string>
     <string name="drawer_item_free_play">Free Play</string>
     <string name="drawer_item_custom">Custom</string>
@@ -13,12 +15,12 @@
     <string name="drawer_item_open_source">Open Source</string>
     <string name="drawer_item_contact">Contact</string>
 
-    <!--incomes-->
+    <!-- incomes -->
     <string name="deposits">Deposits</string>
     <string name="salary">Salary</string>
     <string name="savings">Savings</string>
 
-    <!--costs-->
+    <!-- costs -->
     <string name="hygiene">Hygiene</string>
     <string name="food">Food</string>
     <string name="home">Home</string>
@@ -27,5 +29,6 @@
     <string name="car">Car</string>
     <string name="clothes">Clothes</string>
     <string name="connection">Connection</string>
+    <string name="title_activity_balance">Balance</string>
 
 </resources>

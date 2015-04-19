@@ -147,6 +147,20 @@ public class MainActivity extends ActionBarActivity {
                         Log.v(LOG_TAG, "0 rows");
                     c.close();*/
                     break;
+                case R.id.balance :
+                    /*Log.v(LOG_TAG,"Insert");
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(FinanceContract.CategoryIncomeEntry._ID,"1");
+                    contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME,"Зарплата");
+
+                    MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);*/
+                    Intent intent1 = new Intent(getActivity(),AddFinance.class);
+                    intent1.putExtra("num", "1");
+
+                    startActivity(intent1);
+
+                    break;
+
             }
 
         }

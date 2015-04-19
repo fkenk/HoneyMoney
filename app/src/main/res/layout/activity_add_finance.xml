@@ -16,7 +16,7 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true" android:gravity="center"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:text="GO"
-                    android:id="@+id/buttonGO" />
+                    android:id="@+id/buttonGO" android:onClick="buttonGOClick"/>
             </LinearLayout>
         </LinearLayout>
 
