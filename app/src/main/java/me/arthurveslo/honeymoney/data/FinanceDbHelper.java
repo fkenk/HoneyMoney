@@ -1,18 +1,24 @@
 package me.arthurveslo.honeymoney.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import me.arthurveslo.honeymoney.R;
 
 /**
  * Created by Arthur on 07.03.2015.
  */
 public class FinanceDbHelper extends SQLiteOpenHelper {
-    public final static int DATABASE_VERSION = 1;
+    public final static int DATABASE_VERSION = 7;
     public final static String DATABASE_NAME = "finance.db";
     public static final String LOG_TAG = FinanceDbHelper.class.getSimpleName();
+    private Context context;
+
     public FinanceDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -50,7 +56,54 @@ public class FinanceDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_CATEGORY_INCOME_TABLE);
         db.execSQL(SQL_CREATE_COSTS_TABLE);
         db.execSQL(SQL_CREATE_INCOME_TABLE);
-        //Log.v(LOG_TAG,"On Create method");
+        /**INCOMES STANDARD**/
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FinanceContract.CategoryIncomeEntry._ID, 1);
+        contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME, context.getResources().getString(R.string.deposits));
+        db.insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryIncomeEntry._ID, 2);
+        contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME, context.getResources().getString(R.string.salary));
+        db.insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryIncomeEntry._ID, 3);
+        contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME, context.getResources().getString(R.string.savings));
+        db.insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        /**COSTS STANDARD**/
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 1);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.hygiene));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 2);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.food));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 3);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.home));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 4);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.health));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 5);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.cafe));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 6);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.car));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 7);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.clothes));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        contentValues.put(FinanceContract.CategoryCostsEntry._ID, 8);
+        contentValues.put(FinanceContract.CategoryCostsEntry.COLUMN_NAME, context.getResources().getString(R.string.connection));
+        db.insert(FinanceContract.CategoryCostsEntry.TABLE_NAME, null, contentValues);
+        contentValues.clear();
+        //Log.v(LOG_TAG, String.valueOf(R.string.deposits));
     }
 
     @Override

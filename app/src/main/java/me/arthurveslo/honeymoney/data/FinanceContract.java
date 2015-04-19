@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
  * Created by Arthur on 07.03.2015.
  */
 public class FinanceContract {
+
     public static final String CONTENT_AUTHORITY = "me.arthurveslo.sunshine.data";
 
     public static final class IncomeEntry implements BaseColumns {

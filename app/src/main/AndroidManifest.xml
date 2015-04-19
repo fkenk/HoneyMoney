@@ -19,7 +19,9 @@
         <activity
             android:name=".AddFinance"
             android:label="@string/title_activity_add_finance"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".MainActivity" >
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.arthurveslo.honeymoney.MainActivity" />

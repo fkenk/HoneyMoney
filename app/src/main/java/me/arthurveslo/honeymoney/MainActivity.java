@@ -23,7 +23,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import me.arthurveslo.honeymoney.data.FinanceDbHelper;
 
 public class MainActivity extends ActionBarActivity {
-    FinanceDbHelper financeDbHelper;
+    FinanceDbHelper financeDbHelper = new FinanceDbHelper(this);
     static SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,11 +113,19 @@ public class MainActivity extends ActionBarActivity {
                     contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME,"Зарплата");
 
                     MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);*/
-                    Intent intent = new Intent(getActivity(),AddFinance.class);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(getActivity(),AddFinance.class);
+                    intent1.putExtra("num", "1");
+
+                    startActivity(intent1);
+
                     break;
 
                 case R.id.takeOff :
+                    Intent intent2 = new Intent(getActivity(),AddFinance.class);
+                    intent2.putExtra("num", "2");
+
+                    startActivity(intent2);
+
                     /*Log.v(LOG_TAG,"Rows in my table");
                     Cursor c = MainActivity.getDb().query(FinanceContract.CategoryIncomeEntry.TABLE_NAME,null,null,null,null,null,null);
                     if (c.moveToFirst()) {
