@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#ffced2d4</color>
+    <color name="custom_grey">#ffced2d4</color>
+    <color name="balance_red">#ffd44545</color>
+    <color name="balance_green">#ff6bd487</color>
 </resources>

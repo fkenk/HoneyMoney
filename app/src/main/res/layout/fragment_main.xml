@@ -29,11 +29,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-    <Button
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BALANCE"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
             android:id="@+id/balance" android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/add"
-            android:layout_toRightOf="@+id/takeOff" android:layout_toEndOf="@+id/takeOff"/>
+            android:layout_toRightOf="@+id/takeOff" android:layout_toEndOf="@+id/takeOff"
+            android:layout_alignTop="@+id/takeOff" android:gravity="center"/>
 
 </RelativeLayout>

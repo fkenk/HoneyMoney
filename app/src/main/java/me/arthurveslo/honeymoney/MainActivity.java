@@ -1,6 +1,7 @@
 package me.arthurveslo.honeymoney;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import android.widget.TextView;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -20,11 +22,13 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 
+import me.arthurveslo.honeymoney.data.FinanceContract;
 import me.arthurveslo.honeymoney.data.FinanceDbHelper;
 
 public class MainActivity extends ActionBarActivity {
     FinanceDbHelper financeDbHelper = new FinanceDbHelper(this);
     static SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,6 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,6 +73,7 @@ public class MainActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
         public static final String LOG_TAG = PlaceholderFragment.class.getSimpleName();
         Button btnAdd, btnTakeOff;
+        Double balance = 0.0;
         public PlaceholderFragment() {
         }
 
@@ -100,6 +104,14 @@ public class MainActivity extends ActionBarActivity {
             btnAdd.setOnClickListener(this);
             btnTakeOff = (Button) rootView.findViewById(R.id.takeOff);
             btnTakeOff.setOnClickListener(this);
+            calculateBalance();
+            TextView balanceText = (TextView) rootView.findViewById(R.id.balance);
+            balanceText.setText(String.valueOf(balance));
+            if(Double.valueOf((String) balanceText.getText()) >= 0) {
+                balanceText.setTextColor(getResources().getColor(R.color.balance_green));
+            } else {
+                balanceText.setTextColor(getResources().getColor(R.color.balance_red));
+            }
             return rootView;
         }
 
@@ -107,63 +119,54 @@ public class MainActivity extends ActionBarActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.add :
-                    /*Log.v(LOG_TAG,"Insert");
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(FinanceContract.CategoryIncomeEntry._ID,"1");
-                    contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME,"Зарплата");
-
-                    MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);*/
                     Intent intent1 = new Intent(getActivity(),AddFinance.class);
                     intent1.putExtra("num", "1");
-
                     startActivity(intent1);
-
                     break;
 
                 case R.id.takeOff :
                     Intent intent2 = new Intent(getActivity(),AddFinance.class);
                     intent2.putExtra("num", "2");
-
                     startActivity(intent2);
-
-                    /*Log.v(LOG_TAG,"Rows in my table");
-                    Cursor c = MainActivity.getDb().query(FinanceContract.CategoryIncomeEntry.TABLE_NAME,null,null,null,null,null,null);
-                    if (c.moveToFirst()) {
-
-                        // определяем номера столбцов по имени в выборке
-                        int id = c.getColumnIndex(FinanceContract.CategoryIncomeEntry._ID);
-                        int name = c.getColumnIndex(FinanceContract.CategoryIncomeEntry.COLUMN_NAME);
-
-                        do {
-                            // получаем значения по номерам столбцов и пишем все в лог
-                            Log.v(LOG_TAG,
-                                    "ID = " + c.getInt(id) +
-                                            ", name = " + c.getString(name));
-
-                            // переход на следующую строку
-                            // а если следующей нет (текущая - последняя), то false - выходим из цикла
-                        } while (c.moveToNext());
-                    } else
-                        Log.v(LOG_TAG, "0 rows");
-                    c.close();*/
                     break;
-                case R.id.balance :
-                    /*Log.v(LOG_TAG,"Insert");
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(FinanceContract.CategoryIncomeEntry._ID,"1");
-                    contentValues.put(FinanceContract.CategoryIncomeEntry.COLUMN_NAME,"Зарплата");
-
-                    MainActivity.getDb().insert(FinanceContract.CategoryIncomeEntry.TABLE_NAME, null, contentValues);*/
-                    Intent intent1 = new Intent(getActivity(),AddFinance.class);
-                    intent1.putExtra("num", "1");
-
-                    startActivity(intent1);
-
-                    break;
-
             }
 
         }
-
+        private void calculateBalance() {
+            Cursor cursor = db.query(FinanceContract.IncomeEntry.TABLE_NAME, new String[]{FinanceContract.IncomeEntry._ID,
+                            FinanceContract.IncomeEntry.COLUMN_INCOME,FinanceContract.IncomeEntry.COLUMN_CATEGORY, FinanceContract.IncomeEntry.COLUMN_DATE}, null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex(FinanceContract.IncomeEntry._ID));
+                double income = cursor.getDouble(cursor
+                        .getColumnIndex(FinanceContract.IncomeEntry.COLUMN_INCOME));
+                int category = cursor.getInt(cursor.getColumnIndex(FinanceContract.IncomeEntry.COLUMN_CATEGORY));
+                String date = cursor.getString(cursor
+                        .getColumnIndex(FinanceContract.IncomeEntry.COLUMN_DATE));
+                balance += income;
+            }
+            cursor.close();
+            cursor = db.query(FinanceContract.CostsEntry.TABLE_NAME, new String[]{FinanceContract.CostsEntry._ID,
+                            FinanceContract.CostsEntry.COLUMN_COSTS,FinanceContract.CostsEntry.COLUMN_CATEGORY, FinanceContract.CostsEntry.COLUMN_DATE}, null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex(FinanceContract.CostsEntry._ID));
+                double costs = cursor.getDouble(cursor
+                        .getColumnIndex(FinanceContract.CostsEntry.COLUMN_COSTS));
+                int category = cursor.getInt(cursor.getColumnIndex(FinanceContract.CostsEntry.COLUMN_CATEGORY));
+                String date = cursor.getString(cursor
+                        .getColumnIndex(FinanceContract.CostsEntry.COLUMN_DATE));
+                balance -= costs;
+            }
+            cursor.close();
+        }
     }
 }
