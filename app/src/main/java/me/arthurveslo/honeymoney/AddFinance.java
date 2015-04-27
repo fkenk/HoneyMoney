@@ -164,6 +164,7 @@ public class AddFinance extends ActionBarActivity {
             values.put(FinanceContract.IncomeEntry.COLUMN_DATE, currentDateandTime);
 
             db.insert(FinanceContract.IncomeEntry.TABLE_NAME, null, values);
+
         }
         if(num.equals("2")) {
             int id = 0;

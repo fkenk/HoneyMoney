@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
     }
 
     @Override
@@ -72,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
         public static final String LOG_TAG = PlaceholderFragment.class.getSimpleName();
-        Button btnAdd, btnTakeOff;
+        Button btnAdd, btnTakeOff, btnChange;
         Double balance = 0.0;
         public PlaceholderFragment() {
         }
@@ -104,6 +105,9 @@ public class MainActivity extends ActionBarActivity {
             btnAdd.setOnClickListener(this);
             btnTakeOff = (Button) rootView.findViewById(R.id.takeOff);
             btnTakeOff.setOnClickListener(this);
+            btnChange = (Button) rootView.findViewById(R.id.change);
+            btnChange.setOnClickListener(this);
+
             calculateBalance();
             TextView balanceText = (TextView) rootView.findViewById(R.id.balance);
             balanceText.setText(String.valueOf(balance));
@@ -112,6 +116,9 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 balanceText.setTextColor(getResources().getColor(R.color.balance_red));
             }
+            String un  = getActivity().getIntent().getStringExtra("name");
+            TextView personText = (TextView) rootView.findViewById(R.id.personText);
+            personText.setText("Hi "+un);
             return rootView;
         }
 
@@ -128,6 +135,10 @@ public class MainActivity extends ActionBarActivity {
                     Intent intent2 = new Intent(getActivity(),AddFinance.class);
                     intent2.putExtra("num", "2");
                     startActivity(intent2);
+                    break;
+                case R.id.change :
+                    startActivity(new Intent(getActivity(), Login.class).putExtra("num", "1"));
+                    getActivity().finish();
                     break;
             }
 

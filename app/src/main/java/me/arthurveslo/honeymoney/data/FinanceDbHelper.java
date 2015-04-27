@@ -11,7 +11,7 @@ import me.arthurveslo.honeymoney.R;
  * Created by Arthur on 07.03.2015.
  */
 public class FinanceDbHelper extends SQLiteOpenHelper {
-    public final static int DATABASE_VERSION = 7;
+    public final static int DATABASE_VERSION = 8;
     public final static String DATABASE_NAME = "finance.db";
     public static final String LOG_TAG = FinanceDbHelper.class.getSimpleName();
     private Context context;

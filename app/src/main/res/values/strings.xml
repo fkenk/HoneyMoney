@@ -30,5 +30,9 @@
     <string name="clothes">Clothes</string>
     <string name="connection">Connection</string>
     <string name="title_activity_balance">Balance</string>
+    <string name="title_activity_login">login</string>
 
+    <!-- sign in -->
+    <string name="signIn">Sign in</string>
+    <string name="signOut">Sign out</string>
 </resources>

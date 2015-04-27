@@ -38,4 +38,28 @@
             android:layout_toRightOf="@+id/takeOff" android:layout_toEndOf="@+id/takeOff"
             android:layout_alignTop="@+id/takeOff" android:gravity="center"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/personText"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/change"
+        android:gravity="center"
+        android:layout_toLeftOf="@+id/change"
+        android:layout_alignBottom="@+id/change" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHANGE PERSON"
+        android:id="@+id/change"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:nestedScrollingEnabled="false" />
+
 </RelativeLayout>
