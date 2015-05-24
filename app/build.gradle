@@ -18,7 +18,9 @@ android {
         }
     }
 }
-
+repositories {
+    maven { url "https://jitpack.io" }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile('com.mikepenz.materialdrawer:library:2.5.0@aar') {
@@ -26,6 +28,7 @@ dependencies {
     }
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile files('src/libs/google-play-services.jar/google-play-services.jar')
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
 }
 
 

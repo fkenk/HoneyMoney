@@ -12,6 +12,12 @@
         android:minHeight="?attr/actionBarSize"
         android:transitionName="actionBar" />
 
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/takeOff" android:layout_below="@+id/personText"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

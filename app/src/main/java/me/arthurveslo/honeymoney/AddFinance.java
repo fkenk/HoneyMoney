@@ -22,13 +22,16 @@ import java.util.regex.Pattern;
 
 import me.arthurveslo.honeymoney.data.FinanceContract;
 
-
+/**
+ * activity used to add finace activity
+ */
 public class AddFinance extends ActionBarActivity {
     public static final String LOG_TAG = AddFinance.class.getSimpleName();
     static SQLiteDatabase db;
     ArrayList<String> names = new ArrayList<String>();
     String selectedFromList;
     String num;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,6 @@ public class AddFinance extends ActionBarActivity {
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,6 +80,9 @@ public class AddFinance extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * get incomes to the database and set adaptep to the listview
+     */
     private void getIncomes() {
         final ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -99,6 +104,9 @@ public class AddFinance extends ActionBarActivity {
         listView.setAdapter(adapter);
     }
 
+    /**
+     * get costs to the database and set adaptep to the listview
+     */
     public void getCosts() {
         ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -121,6 +129,10 @@ public class AddFinance extends ActionBarActivity {
 
     }
 
+    /**
+     * click on numeric button
+     * @param v view
+     */
     public void buttonOnClick(View v) {
         Button button = (Button) v;
         EditText editText = (EditText) findViewById(R.id.editText);
@@ -135,6 +147,10 @@ public class AddFinance extends ActionBarActivity {
         }
     }
 
+    /**
+     * click on GO button
+     * @param v view
+     */
     public void buttonGOClick(View v) {
         if(num.equals("1")) {
             int id = 0;
@@ -197,47 +213,5 @@ public class AddFinance extends ActionBarActivity {
         }
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
-        /*SELECT INCOME TABLE*/
-        /*cursor = db.query(FinanceContract.IncomeEntry.TABLE_NAME, new String[]{FinanceContract.IncomeEntry._ID,
-                        FinanceContract.IncomeEntry.COLUMN_INCOME,FinanceContract.IncomeEntry.COLUMN_CATEGORY, FinanceContract.IncomeEntry.COLUMN_DATE}, null,
-                null,
-                null,
-                null,
-                null
-        );
-        while (cursor.moveToNext()) {
-            id = cursor.getInt(cursor.getColumnIndex(FinanceContract.IncomeEntry._ID));
-            double income = cursor.getDouble(cursor
-                    .getColumnIndex(FinanceContract.IncomeEntry.COLUMN_INCOME));
-            int category = cursor.getInt(cursor.getColumnIndex(FinanceContract.IncomeEntry.COLUMN_CATEGORY));
-            String date = cursor.getString(cursor
-                    .getColumnIndex(FinanceContract.IncomeEntry.COLUMN_DATE));
-            Log.v(LOG_TAG,"data " + id);
-            Log.v(LOG_TAG,"data " + income);
-            Log.v(LOG_TAG,"data " + category);
-            Log.v(LOG_TAG,"data " + date);
-        }
-        cursor.close();*/
-        /*SELECT Costs TABLE*/
-        /*Cursor cursor = db.query(FinanceContract.CostsEntry.TABLE_NAME, new String[]{FinanceContract.CostsEntry._ID,
-                        FinanceContract.CostsEntry.COLUMN_COSTS,FinanceContract.CostsEntry.COLUMN_CATEGORY, FinanceContract.CostsEntry.COLUMN_DATE}, null,
-                null,
-                null,
-                null,
-                null
-        );
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(cursor.getColumnIndex(FinanceContract.CostsEntry._ID));
-            double Costs = cursor.getDouble(cursor
-                    .getColumnIndex(FinanceContract.CostsEntry.COLUMN_COSTS));
-            int category = cursor.getInt(cursor.getColumnIndex(FinanceContract.CostsEntry.COLUMN_CATEGORY));
-            String date = cursor.getString(cursor
-                    .getColumnIndex(FinanceContract.CostsEntry.COLUMN_DATE));
-            Log.v(LOG_TAG,"data " + id);
-            Log.v(LOG_TAG,"data " + Costs);
-            Log.v(LOG_TAG,"data " + category);
-            Log.v(LOG_TAG,"data " + date);
-        }
-        cursor.close();*/
     }
 }

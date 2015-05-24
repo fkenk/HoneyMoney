@@ -3,12 +3,15 @@ package me.arthurveslo.honeymoney.data;
 import android.provider.BaseColumns;
 
 /**
- * Created by Arthur on 07.03.2015.
+ * used for building schema of database
  */
 public class FinanceContract {
 
     public static final String CONTENT_AUTHORITY = "me.arthurveslo.sunshine.data";
 
+    /**
+     * schema for income entry
+     */
     public static final class IncomeEntry implements BaseColumns {
         public static final  String TABLE_NAME = "incomes";
 
@@ -17,6 +20,10 @@ public class FinanceContract {
         public static final String COLUMN_DATE = "date";
 
     }
+
+    /**
+     * schema for costs entry
+     */
     public static final class CostsEntry implements BaseColumns {
         public static final  String TABLE_NAME = "costs";
 
@@ -25,6 +32,9 @@ public class FinanceContract {
         public static final String COLUMN_DATE = "date";
     }
 
+    /**
+     * schema for category costs entry
+     */
     public static final class CategoryCostsEntry implements BaseColumns {
         public static final String TABLE_NAME = "category_costs";
 
@@ -32,6 +42,9 @@ public class FinanceContract {
 
     }
 
+    /**
+     * schema for category income entry
+     */
     public static final class CategoryIncomeEntry implements BaseColumns {
         public static final String TABLE_NAME = "category_income";
 

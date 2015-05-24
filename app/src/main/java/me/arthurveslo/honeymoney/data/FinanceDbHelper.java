@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import me.arthurveslo.honeymoney.R;
 
 /**
- * Created by Arthur on 07.03.2015.
+ * used to to create data base and update it
  */
 public class FinanceDbHelper extends SQLiteOpenHelper {
     public final static int DATABASE_VERSION = 8;
@@ -16,6 +16,10 @@ public class FinanceDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = FinanceDbHelper.class.getSimpleName();
     private Context context;
 
+    /**
+     * constructor
+     * @param context of activity
+     */
     public FinanceDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
